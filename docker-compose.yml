@@ -4,6 +4,7 @@ services:
         image: centos
         volumes:
             - "./soft:/soft"
+        tty: true
         ports:
             - "7100:7100"
             - "2525:2525"
