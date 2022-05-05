@@ -2,6 +2,7 @@ version: '3'
 services:
     pmta:
         image: centos:centos7
+        container_name: pmta
         volumes:
             - "./soft:/soft"
         tty: true
