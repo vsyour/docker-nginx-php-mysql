@@ -3,12 +3,14 @@ services:
     pmta:
         image: centos:centos7
         container_name: pmta
+        hostname: www.localhost.com
+        domainname: www.localhost.com
         volumes:
             - "./soft:/soft"
         tty: true
         ports:
             - "7100:7100"
-            - "2525:2525"
+            - "2525:2525"        
         restart: always
         depends_on:
             - php
