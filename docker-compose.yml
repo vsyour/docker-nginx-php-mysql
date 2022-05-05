@@ -1,7 +1,18 @@
 version: '3'
 services:
+    pmta:
+        image: centos
+        volumes:
+            - "./soft:/soft"
+        ports:
+            - "7100:7100"
+            - "2525:2525"
+        restart: always
+        depends_on:
+            - php
+            - mysqldb
     web:
-        image: nginx:centos
+        image: nginx
         volumes:
             - "./etc/nginx/default.conf:/etc/nginx/conf.d/default.conf"
             - "./etc/ssl:/etc/ssl"
@@ -10,8 +21,6 @@ services:
         ports:
             - "8000:80"
             - "3000:443"
-            - "7100:7100"
-            - "2525:2525"
         environment:
             - NGINX_HOST=${NGINX_HOST}
         command: /bin/sh -c "envsubst '$$NGINX_HOST' < /etc/nginx/conf.d/default.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
