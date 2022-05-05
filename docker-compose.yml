@@ -1,7 +1,7 @@
 version: '3'
 services:
     pmta:
-        image: centos
+        image: centos:centos7
         volumes:
             - "./soft:/soft"
         tty: true
